@@ -24,9 +24,8 @@ class _HomeState extends State<Home> {
       body: pages.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Animes'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorites')
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Anime'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites')
         ],
         currentIndex: selectedIndex,
         onTap: (value) {

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/local/db_anime.dart';
 import '../../data/models/anime.dart';
-import 'anime_screen.dart';
+import '../widgets/anime_widget.dart';
 
 class FavoriteList extends StatefulWidget {
   const FavoriteList({super.key});
@@ -29,12 +29,13 @@ class _FavoriteListState extends State<FavoriteList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Total de episodios y miembros'),
+          title: const Text('Total Episodes and Members'),
           content: Text(
-              'Episodios totales: $totalEpisodes\nMiembros totales: $totalMembers'),
+            'Total Episodes: $totalEpisodes\nTotal Members: $totalMembers',
+          ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Cerrar'),
+              child: const Text('Close'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -63,17 +64,21 @@ class _FavoriteListState extends State<FavoriteList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Favorite List'),
+      ),
       body: ListView.builder(
         itemCount: animes?.length,
         itemBuilder: (context, index) {
-          return AnimeItem(anime: animes![index]);
+          return AnimeItem(anime: animes![index], isFavoriteScreen: true);
         },
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           showSharedPreferences();
         },
-        child: const Icon(Icons.info),
+        label: const Text('Summary'),
+        icon: const Icon(Icons.info),
       ),
     );
   }
